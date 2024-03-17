@@ -4,11 +4,13 @@ import "fmt"
 
 //program berikut adalah program untuk menghitung regresi linear menggunakan metode kuadrat terkecil
 func main() {
+	//insert value of x from 0 to 100 and y from 0 to 1000 for 10 times
 	var x = [10]float32{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
-	var y = [10]float32{101, 109, 302, 308, 552, 601, 703, 709, 808, 1003}
+	var y = [10]float32{71, 119, 282, 328, 552, 631, 713, 832, 898, 1063}
 	var x2 [10]float32
 	var y2 [10]float32
 	var xy [10]float32
+	//initiate new value for x2,y2,and xy
 	for i := 0; i < 10; i++ {
 		x2[i] = x[i] * x[i]
 		y2[i] = y[i] * y[i]
@@ -25,6 +27,7 @@ func main() {
 	SumX2 = 0
 	SumY2 = 0
 	SumXY = 0
+	//search value for sum x,sum y,sumx2, and sumxy
 	for i := 0; i < 10; i++ {
 		SumX += x[i]
 		SumY += y[i]
@@ -42,25 +45,26 @@ func main() {
 	fmt.Println("SumY2", SumY2)
 	fmt.Println("MeanX", MeanX)
 	fmt.Println("MeanY", MeanY)
-
-	b := ((SumX * SumY) - (SumXY * 10)) / ((SumX * SumX) - (SumX2 * 2))
+	//calculate a value of b
+	b := ((SumX * SumY) - (SumXY * 10)) / ((SumX * SumX) - (SumX2 * 10))
 
 	fmt.Println(b)
+	//calculate value of a
 	a := (SumY - SumX*b) / 10
 	fmt.Println(a)
 
-	fmt.Printf("Y=(%vX)+(%v)", a, b)
+	fmt.Printf("Y=(%v)X+(%v)", a, b)
 
 }
 
 /*
-10*a+sumX*b=sumY
+equation to calculate linear euations using Least squares approximation metods
+n*a+sumX*b=sumY
 sumX*a+Sumx2*b=sumXY
 
 sumX*10*a+sumX*sumX*b=sumY*sumX
-sumX*10*a+Sumx2*10*b=sumXY*10
+sumX*10*a+Sumx2*n*b=sumXY*n
 
-b=((sumX*sumY)-(sumXY*10))/((sumX*SumX)-(sumX2*2))
-
-
+b=((sumX*sumY)-(sumXY*n))/((sumX*SumX)-(sumX2*n))
+a=
 */
